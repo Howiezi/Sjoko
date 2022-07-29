@@ -18,6 +18,9 @@ project "Sjoko"
   targetdir ("bin/" .. outputdir .. "/%{prj.name}")
   objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
+  pchheader "sjpch.h"
+  pchsource "Sjoko/src/sjpch.cpp"
+
   files
   {
     "%{prj.name}/src/**.h",
@@ -26,6 +29,7 @@ project "Sjoko"
 
   includedirs
   {
+    "%{prj.name}/src",
     "%{prj.name}/vendor/spdlog/include;"
   }
 
