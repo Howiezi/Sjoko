@@ -10,4 +10,12 @@
   #error Sjoko Engine only supports Windows!
 #endif
 
+#ifdef SJ_ENABLE_ASSERTS
+  #define SJ_ASSERT(x, ...) {if(!(x)) {SJ_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
+  #define SJ_CORE_ASSERT(x, ...) {if(!(x)) {SJ_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
+#else
+  #define SJ_ASSERT(x, ...)
+  #define SJ_CORE_ASSERT(x, ...)
+#endif
+
 #define BIT(x) (1 << x)

@@ -1,3 +1,6 @@
 [submodule "Sjoko/vendor/spdlog"]
 	path = Sjoko/vendor/spdlog
 	url = https://github.com/gabime/spdlog
+[submodule "Sjoko/vendor/GLFW"]
+	path = Sjoko/vendor/GLFW
+	url = https://github.com/Howiezi/glfw
