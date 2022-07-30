@@ -37,7 +37,7 @@ namespace Sjoko {
     int m_RepeatCount;
   };
 
-  class SJOKO_API KeyReleasedEvent : Public KeyEvent
+  class SJOKO_API KeyReleasedEvent : public KeyEvent
   {
   public:
     KeyReleasedEvent(int keycode)

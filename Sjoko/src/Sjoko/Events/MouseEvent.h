@@ -77,7 +77,7 @@ namespace Sjoko {
     EVENT_CLASS_TYPE(MouseButtonPressed)
   };
 
-  class SJOKO_API MouseButtonReleasedEvent : Public MouseButtonEvent
+  class SJOKO_API MouseButtonReleasedEvent : public MouseButtonEvent
   {
   public:
     MouseButtonReleasedEvent(int button)
