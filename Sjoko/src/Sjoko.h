@@ -3,6 +3,7 @@
 // For use by Sjoko applications
 
 #include "Sjoko/Application.h"
+#include "Sjoko/Layer.h"
 #include "Sjoko/Log.h"
 
 

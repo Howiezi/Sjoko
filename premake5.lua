@@ -64,14 +64,17 @@ project "Sjoko"
 
   filter "configurations:Debug"
     defines "SJ_DEBUG"
+    buildoptions "/MDd"
 	  symbols "On"
 
   filter "configurations:Release"
     defines "SJ_RELEASE"
+    buildoptions "/MD"
 	  optimize "On"
 
   filter "configurations:Dist"
     defines "SJ_DIST"
+    buildoptions "/MD"
 	  optimize "On"
 
 project "Sandbox"
@@ -111,12 +114,15 @@ project "Sandbox"
 
   filter "configurations:Debug"
     defines "SJ_DEBUG"
+    buildoptions "/MDd"
 	  symbols "On"
 
   filter "configurations:Release"
     defines "SJ_RELEASE"
+    buildoptions "/MD"
 	  optimize "On"
 
   filter "configurations:Dist"
     defines "SJ_DIST"
+    buildoptions "/MD"
 	  optimize "On"
