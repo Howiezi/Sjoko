@@ -6,6 +6,7 @@
 #include "Sjoko/Layer.h"
 #include "Sjoko/Log.h"
 
+#include "Sjoko/ImGui/ImGuiLayer.h"
 
 // ---Entry Point----------------
 #include "Sjoko/EntryPoint.h"

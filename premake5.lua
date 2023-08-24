@@ -1,5 +1,6 @@
 workspace "Sjoko"
   architecture "x64"
+  startproject "Sandbox"
 
   configurations
   {
@@ -13,13 +14,21 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 -- Include directories relative to root folder (solution directory)
 IncludeDir = {}
 IncludeDir["GLFW"] = "Sjoko/vendor/GLFW/include"
+IncludeDir["Glad"] = "Sjoko/vendor/Glad/include"
+IncludeDir["ImGui"] = "Sjoko/vendor/imgui"
 
-include "Sjoko/vendor/GLFW"
+group "Dependencies"
+  include "Sjoko/vendor/GLFW"
+  include "Sjoko/vendor/Glad"
+  include "Sjoko/vendor/imgui"
+
+  group ""
 
 project "Sjoko"
   location "Sjoko"
   kind "SharedLib"
   language "C++"
+  staticruntime "off"
 
   targetdir ("bin/" .. outputdir .. "/%{prj.name}")
   objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -37,50 +46,55 @@ project "Sjoko"
   {
     "%{prj.name}/src",
     "%{prj.name}/vendor/spdlog/include;",
-    "%{IncludeDir.GLFW}"
+    "%{IncludeDir.GLFW}",
+    "%{IncludeDir.Glad}",
+    "%{IncludeDir.ImGui}"
   }
 
   links
   {
     "GLFW",
+    "Glad",
+    "ImGui",
     "opengl32.lib"
   }
 
   filter "system:windows"
     cppdialect "C++17"
-	  staticruntime "On"
 	  systemversion "latest"
 
 	  defines 
 	  {
 	    "SJ_PLATFORM_WINDOWS",
-	    "SJ_BUILD_DLL"
+      "SJ_BUILD_DLL",
+      "GLFW_INCLUDE_NONE"
 	  }
 
 	  postbuildcommands
 	  {
-	    ("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
+	    ("{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputdir .. "/Sandbox/\"")
 	  }
 
   filter "configurations:Debug"
     defines "SJ_DEBUG"
-    buildoptions "/MDd"
+    runtime "Debug"
 	  symbols "On"
 
   filter "configurations:Release"
     defines "SJ_RELEASE"
-    buildoptions "/MD"
+    runtime "Release"
 	  optimize "On"
 
   filter "configurations:Dist"
     defines "SJ_DIST"
-    buildoptions "/MD"
+    runtime "Release"
 	  optimize "On"
 
 project "Sandbox"
   location "Sandbox"
   kind "ConsoleApp"
   language "C++"
+  staticruntime "off"
 
   targetdir ("bin/" .. outputdir .. "/%{prj.name}")
   objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -104,7 +118,6 @@ project "Sandbox"
 
   filter "system:windows"
     cppdialect "C++17"
-	  staticruntime "On"
 	  systemversion "latest"
 
 	  defines 
@@ -114,15 +127,15 @@ project "Sandbox"
 
   filter "configurations:Debug"
     defines "SJ_DEBUG"
-    buildoptions "/MDd"
+    runtime "Debug"
 	  symbols "On"
 
   filter "configurations:Release"
     defines "SJ_RELEASE"
-    buildoptions "/MD"
+    runtime "Release"
 	  optimize "On"
 
   filter "configurations:Dist"
     defines "SJ_DIST"
-    buildoptions "/MD"
+    runtime "Release"
 	  optimize "On"

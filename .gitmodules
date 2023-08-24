@@ -4,3 +4,9 @@
 [submodule "Sjoko/vendor/GLFW"]
 	path = Sjoko/vendor/GLFW
 	url = https://github.com/Howiezi/glfw
+[submodule "imgui"]
+	path = imgui
+	url = https://github.com/TheCherno/imgui
+[submodule "Sjoko/vendor/imgui"]
+	path = Sjoko/vendor/imgui
+	url = https://github.com/TheCherno/imgui
