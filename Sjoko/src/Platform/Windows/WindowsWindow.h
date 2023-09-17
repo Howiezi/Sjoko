@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Sjoko/Window.h"
+#include "Sjoko/Renderer/GraphicsContext.h"
 
 #include <GLFW/glfw3.h>
 
@@ -28,6 +29,7 @@ namespace Sjoko {
     virtual void Shutdown();
 
     GLFWwindow* m_Window;
+    GraphicsContext* m_Context;
 
     struct WindowData 
     {

@@ -16,6 +16,7 @@ IncludeDir = {}
 IncludeDir["GLFW"] = "Sjoko/vendor/GLFW/include"
 IncludeDir["Glad"] = "Sjoko/vendor/Glad/include"
 IncludeDir["ImGui"] = "Sjoko/vendor/imgui"
+IncludeDir["glm"] = "Sjoko/vendor/glm"
 
 group "Dependencies"
   include "Sjoko/vendor/GLFW"
@@ -26,9 +27,10 @@ group "Dependencies"
 
 project "Sjoko"
   location "Sjoko"
-  kind "SharedLib"
+  kind "StaticLib"
   language "C++"
-  staticruntime "off"
+  cppdialect "C++17"
+  staticruntime "on"
 
   targetdir ("bin/" .. outputdir .. "/%{prj.name}")
   objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -39,7 +41,9 @@ project "Sjoko"
   files
   {
     "%{prj.name}/src/**.h",
-    "%{prj.name}/src/**.cpp"
+    "%{prj.name}/src/**.cpp",
+    "%{prj.name}/vendor/glm/glm/**.hpp",
+    "%{prj.name}/vendor/glm/glm/**.inl"
   }
 
   includedirs
@@ -48,7 +52,8 @@ project "Sjoko"
     "%{prj.name}/vendor/spdlog/include;",
     "%{IncludeDir.GLFW}",
     "%{IncludeDir.Glad}",
-    "%{IncludeDir.ImGui}"
+    "%{IncludeDir.ImGui}",
+    "%{IncludeDir.glm}"
   }
 
   links
@@ -60,7 +65,6 @@ project "Sjoko"
   }
 
   filter "system:windows"
-    cppdialect "C++17"
 	  systemversion "latest"
 
 	  defines 
@@ -68,33 +72,29 @@ project "Sjoko"
 	    "SJ_PLATFORM_WINDOWS",
       "SJ_BUILD_DLL",
       "GLFW_INCLUDE_NONE"
-	  }
-
-	  postbuildcommands
-	  {
-	    ("{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputdir .. "/Sandbox/\"")
-	  }
-
+    }
+    
   filter "configurations:Debug"
     defines "SJ_DEBUG"
     runtime "Debug"
-	  symbols "On"
+	  symbols "on"
 
   filter "configurations:Release"
     defines "SJ_RELEASE"
     runtime "Release"
-	  optimize "On"
+	  optimize "on"
 
   filter "configurations:Dist"
     defines "SJ_DIST"
     runtime "Release"
-	  optimize "On"
+	  optimize "on"
 
 project "Sandbox"
   location "Sandbox"
   kind "ConsoleApp"
   language "C++"
-  staticruntime "off"
+  cppdialect "C++17"
+  staticruntime "on"
 
   targetdir ("bin/" .. outputdir .. "/%{prj.name}")
   objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -108,7 +108,8 @@ project "Sandbox"
   includedirs
   {
     "Sjoko/vendor/spdlog/include;",
-    "Sjoko/src"
+    "Sjoko/src",
+    "%{IncludeDir.glm}"
   }
 
   links
@@ -117,7 +118,6 @@ project "Sandbox"
   }
 
   filter "system:windows"
-    cppdialect "C++17"
 	  systemversion "latest"
 
 	  defines 
@@ -128,14 +128,14 @@ project "Sandbox"
   filter "configurations:Debug"
     defines "SJ_DEBUG"
     runtime "Debug"
-	  symbols "On"
+	  symbols "on"
 
   filter "configurations:Release"
     defines "SJ_RELEASE"
     runtime "Release"
-	  optimize "On"
+	  optimize "on"
 
   filter "configurations:Dist"
     defines "SJ_DIST"
     runtime "Release"
-	  optimize "On"
+	  optimize "on"

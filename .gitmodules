@@ -10,3 +10,6 @@
 [submodule "Sjoko/vendor/imgui"]
 	path = Sjoko/vendor/imgui
 	url = https://github.com/TheCherno/imgui
+[submodule "Sjoko/vendor/glm"]
+	path = Sjoko/vendor/glm
+	url = https://github.com/g-truc/glm

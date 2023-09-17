@@ -7,6 +7,11 @@
 #include "Sjoko/Events/Event.h"
 #include "Sjoko/Events/ApplicationEvent.h"
 
+#include "Sjoko/ImGui/ImGuiLayer.h"
+
+#include "Sjoko/Renderer/Shader.h"
+#include "Sjoko/Renderer/Buffer.h"
+
 namespace Sjoko {
 
   class SJOKO_API Application
@@ -29,8 +34,14 @@ namespace Sjoko {
     bool OnWindowClose(WindowCloseEvent& e);
 
     std::unique_ptr<Window> m_Window;
+    ImGuiLayer* m_ImGuiLayer;
     bool m_Running = true;
     LayerStack m_LayerStack;
+
+    unsigned int m_VertexArray;
+    std::unique_ptr<Shader> m_Shader;
+    std::unique_ptr<VertexBuffer> m_VertexBuffer;
+    std::unique_ptr<IndexBuffer> m_IndexBuffer;
 
     static Application* s_Instance;
   };

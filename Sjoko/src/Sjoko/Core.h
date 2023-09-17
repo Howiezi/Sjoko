@@ -1,11 +1,15 @@
 #pragma once
 
 #ifdef SJ_PLATFORM_WINDOWS
+#if SJ_DYNAMIC_LINK
   #ifdef SJ_BUILD_DLL
     #define SJOKO_API __declspec(dllexport)
   #else
     #define SJOKO_API __declspec(dllimport)
   #endif
+#else
+  #define SJOKO_API
+#endif
 #else
   #error Sjoko Engine only supports Windows!
 #endif

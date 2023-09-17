@@ -33,7 +33,6 @@ public:
   Sandbox()
   {
     PushLayer(new ExampleLayer());
-    PushOverlay(new Sjoko::ImGuiLayer());
   }
 
   ~Sandbox()
