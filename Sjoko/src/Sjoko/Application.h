@@ -13,6 +13,8 @@
 #include "Sjoko/Renderer/Buffer.h"
 #include "Sjoko/Renderer/VertexArray.h"
 
+#include "Sjoko/Renderer/OrthographicCamera.h"
+
 namespace Sjoko {
 
   class SJOKO_API Application
@@ -44,6 +46,8 @@ namespace Sjoko {
 
     std::shared_ptr<Shader> m_BlueShader;
     std::shared_ptr<VertexArray> m_SquareVA;
+
+    OrthographicCamera m_Camera;
 
     static Application* s_Instance;
   };
