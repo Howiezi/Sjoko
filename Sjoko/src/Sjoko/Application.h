@@ -7,17 +7,13 @@
 #include "Sjoko/Events/Event.h"
 #include "Sjoko/Events/ApplicationEvent.h"
 
+#include "Sjoko/Core/Timestep.h"
+
 #include "Sjoko/ImGui/ImGuiLayer.h"
-
-#include "Sjoko/Renderer/Shader.h"
-#include "Sjoko/Renderer/Buffer.h"
-#include "Sjoko/Renderer/VertexArray.h"
-
-#include "Sjoko/Renderer/OrthographicCamera.h"
 
 namespace Sjoko {
 
-  class SJOKO_API Application
+  class Application
   {
   public:
     Application();
@@ -40,14 +36,7 @@ namespace Sjoko {
     ImGuiLayer* m_ImGuiLayer;
     bool m_Running = true;
     LayerStack m_LayerStack;
-
-    std::shared_ptr<Shader> m_Shader;
-    std::shared_ptr<VertexArray> m_VertexArray;
-
-    std::shared_ptr<Shader> m_BlueShader;
-    std::shared_ptr<VertexArray> m_SquareVA;
-
-    OrthographicCamera m_Camera;
+    float m_LastFrameTime = 0.0f;
 
     static Application* s_Instance;
   };
