@@ -94,7 +94,7 @@ public:
       }
     )";
 
-    m_Shader.reset(Sjoko::Shader::Create(vertexSrc, fragmentSrc));
+    m_Shader = Sjoko::Shader::Create("VertexColorTriangle", vertexSrc, fragmentSrc);
 
     std::string flatColorVertexSrc = R"(
       #version 330 core
@@ -128,15 +128,15 @@ public:
       }
     )";
 
-    m_FlatColorShader.reset(Sjoko::Shader::Create(flatColorVertexSrc, flatColorFragmentSrc));
+    m_FlatColorShader = Sjoko::Shader::Create("FlatColor", flatColorVertexSrc, flatColorFragmentSrc);
 
-    m_TextureShader.reset(Sjoko::Shader::Create("assets/shaders/Texture.glsl"));
+    auto textureShader = m_Shaderlibrary.Load("assets/shaders/Texture.glsl");
 
     m_Texture = Sjoko::Texture2D::Create("assets/textures/Checkerboard.png");
     m_AlphaTexture = Sjoko::Texture2D::Create("assets/textures/AlphaTexture.png");
 
-    std::dynamic_pointer_cast<Sjoko::OpenGLShader>(m_TextureShader)->Bind();
-    std::dynamic_pointer_cast<Sjoko::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
+    std::dynamic_pointer_cast<Sjoko::OpenGLShader>(textureShader)->Bind();
+    std::dynamic_pointer_cast<Sjoko::OpenGLShader>(textureShader)->UploadUniformInt("u_Texture", 0);
   }
 
   void OnUpdate(Sjoko::Timestep ts) override
@@ -189,10 +189,12 @@ public:
       }
     }
 
+    auto textureShader = m_Shaderlibrary.Get("Texture");
+
     m_Texture->Bind();
-    Sjoko::Renderer::Submit(m_SquareVA, m_TextureShader, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+    Sjoko::Renderer::Submit(m_SquareVA, textureShader, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
     m_AlphaTexture->Bind();
-    Sjoko::Renderer::Submit(m_SquareVA, m_TextureShader, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+    Sjoko::Renderer::Submit(m_SquareVA, textureShader, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
     // Triangle
     // Sjoko::Renderer::Submit(m_VertexArray, m_Shader);
@@ -212,10 +214,11 @@ public:
   }
 
 private:
+  Sjoko::ShaderLibrary m_Shaderlibrary;
   Sjoko::Ref<Sjoko::Shader> m_Shader;
   Sjoko::Ref<Sjoko::VertexArray> m_VertexArray;
 
-  Sjoko::Ref<Sjoko::Shader> m_FlatColorShader, m_TextureShader;
+  Sjoko::Ref<Sjoko::Shader> m_FlatColorShader;
   Sjoko::Ref<Sjoko::VertexArray> m_SquareVA;
 
   Sjoko::Ref<Sjoko::Texture2D> m_Texture, m_AlphaTexture;
