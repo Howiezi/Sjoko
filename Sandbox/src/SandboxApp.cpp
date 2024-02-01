@@ -166,6 +166,7 @@ public:
     m_TextureShader.reset(Sjoko::Shader::Create(textureVertexSrc, textureFragmentSrc));
 
     m_Texture = Sjoko::Texture2D::Create("assets/textures/Checkerboard.png");
+    m_AlphaTexture = Sjoko::Texture2D::Create("assets/textures/AlphaTexture.png");
 
     std::dynamic_pointer_cast<Sjoko::OpenGLShader>(m_TextureShader)->Bind();
     std::dynamic_pointer_cast<Sjoko::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
@@ -223,6 +224,8 @@ public:
 
     m_Texture->Bind();
     Sjoko::Renderer::Submit(m_SquareVA, m_TextureShader, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+    m_AlphaTexture->Bind();
+    Sjoko::Renderer::Submit(m_SquareVA, m_TextureShader, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
     // Triangle
     // Sjoko::Renderer::Submit(m_VertexArray, m_Shader);
@@ -248,7 +251,7 @@ private:
   Sjoko::Ref<Sjoko::Shader> m_FlatColorShader, m_TextureShader;
   Sjoko::Ref<Sjoko::VertexArray> m_SquareVA;
 
-  Sjoko::Ref<Sjoko::Texture2D> m_Texture;
+  Sjoko::Ref<Sjoko::Texture2D> m_Texture, m_AlphaTexture;
 
   Sjoko::OrthographicCamera m_Camera;
   glm::vec3 m_CameraPosition;
