@@ -17,6 +17,7 @@ IncludeDir["GLFW"] = "Sjoko/vendor/GLFW/include"
 IncludeDir["Glad"] = "Sjoko/vendor/Glad/include"
 IncludeDir["ImGui"] = "Sjoko/vendor/imgui"
 IncludeDir["glm"] = "Sjoko/vendor/glm"
+IncludeDir["stb_image"] = "Sjoko/vendor/stb_image"
 
 group "Dependencies"
   include "Sjoko/vendor/GLFW"
@@ -42,6 +43,8 @@ project "Sjoko"
   {
     "%{prj.name}/src/**.h",
     "%{prj.name}/src/**.cpp",
+    "%{prj.name}/vendor/stb_image/**.h",
+    "%{prj.name}/vendor/stb_image/**.cpp",
     "%{prj.name}/vendor/glm/glm/**.hpp",
     "%{prj.name}/vendor/glm/glm/**.inl"
   }
@@ -53,7 +56,8 @@ project "Sjoko"
     "%{IncludeDir.GLFW}",
     "%{IncludeDir.Glad}",
     "%{IncludeDir.ImGui}",
-    "%{IncludeDir.glm}"
+    "%{IncludeDir.glm}",
+    "%{IncludeDir.stb_image}"
   }
 
   links

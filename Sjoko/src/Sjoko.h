@@ -20,6 +20,7 @@
 
 #include "Sjoko/Renderer/Buffer.h"
 #include "Sjoko/Renderer/Shader.h"
+#include "Sjoko/Renderer/Texture.h"
 #include "Sjoko/Renderer/VertexArray.h"
 
 #include "Sjoko/Renderer/OrthographicCamera.h"
