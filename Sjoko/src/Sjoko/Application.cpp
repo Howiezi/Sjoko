@@ -48,6 +48,7 @@ namespace Sjoko {
   {
     EventDispatcher dispatcher(e);
     dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
+    dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_FN(OnWindowResize));
 
     //SJ_CORE_TRACE(e);
 
@@ -74,12 +75,15 @@ namespace Sjoko {
         layer->OnUpdate(timestep);
       }
 
-      m_ImGuiLayer->Begin();
-      for (Layer* layer : m_LayerStack)
+      if (!m_Minimized)
       {
-        layer->OnImGuiRender();
+        m_ImGuiLayer->Begin();
+        for (Layer* layer : m_LayerStack)
+        {
+          layer->OnImGuiRender();
+        }
+        m_ImGuiLayer->End();
       }
-      m_ImGuiLayer->End();
 
       m_Window->OnUpdate();
     }
@@ -89,6 +93,20 @@ namespace Sjoko {
   {
     m_Running = false;
     return true;
+  }
+
+  bool Application::OnWindowResize(WindowResizeEvent& e)
+  {
+    if (e.GetWidth() == 0 || e.GetHeight() == 0)
+    {
+      m_Minimized = true;
+      return false;
+    }
+
+    m_Minimized = false;
+    Renderer::OnWindowResize(e.GetWidth(), e.GetHeight());
+
+    return false;
   }
 
 }
