@@ -11,7 +11,7 @@ class ExampleLayer : public Sjoko::Layer
 {
 public:
   ExampleLayer()
-    : Layer("Example"), m_Camera(-2.0f, 2.0f, -2.0f, 2.0f), m_CameraPosition(0.0f)
+    : Layer("Example"), m_CameraController(1280.0f/720.0f)
   {
     m_VertexArray.reset(Sjoko::VertexArray::Create());
 
@@ -141,38 +141,14 @@ public:
 
   void OnUpdate(Sjoko::Timestep ts) override
   {
-    if (Sjoko::Input::IsKeyPressed(SJ_KEY_A))
-    {
-      m_CameraPosition.x -= m_CameraSpeed * ts;
-    }
-    else if (Sjoko::Input::IsKeyPressed(SJ_KEY_D))
-    {
-      m_CameraPosition.x += m_CameraSpeed * ts;
-    }
-    if (Sjoko::Input::IsKeyPressed(SJ_KEY_S))
-    {
-      m_CameraPosition.y -= m_CameraSpeed * ts;
-    }
-    else if (Sjoko::Input::IsKeyPressed(SJ_KEY_W))
-    {
-      m_CameraPosition.y += m_CameraSpeed * ts;
-    }
-    if (Sjoko::Input::IsKeyPressed(SJ_KEY_Q))
-    {
-      m_CameraRotation += m_CameraRotationSpeed * ts;
-    }
-    else if (Sjoko::Input::IsKeyPressed(SJ_KEY_E))
-    {
-      m_CameraRotation -= m_CameraRotationSpeed * ts;
-    }
+    // Update
+    m_CameraController.OnUpdate(ts);
 
+    // Render
     Sjoko::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
     Sjoko::RenderCommand::Clear();
 
-    m_Camera.SetPosition(m_CameraPosition);
-    m_Camera.SetRotation(m_CameraRotation);
-
-    Sjoko::Renderer::BeginScene(m_Camera);
+    Sjoko::Renderer::BeginScene(m_CameraController.GetCamera());
 
     glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
@@ -209,8 +185,9 @@ public:
     ImGui::End();
   }
 
-  void OnEvent(Sjoko::Event& event) override
+  void OnEvent(Sjoko::Event& e) override
   {
+    m_CameraController.OnEvent(e);
   }
 
 private:
@@ -223,11 +200,7 @@ private:
 
   Sjoko::Ref<Sjoko::Texture2D> m_Texture, m_AlphaTexture;
 
-  Sjoko::OrthographicCamera m_Camera;
-  glm::vec3 m_CameraPosition;
-  float m_CameraRotation = 0.0f;
-  float m_CameraSpeed = 5.0f;
-  float m_CameraRotationSpeed = 90.0f;
+  Sjoko::OrthographicCameraController m_CameraController;
 
   glm::vec3 m_SquareColor;
 };

@@ -11,6 +11,7 @@
 #include "Sjoko/Input.h"
 #include "Sjoko/KeyCodes.h"
 #include "Sjoko/MouseButtonCodes.h"
+#include "Sjoko/OrthographicCameraController.h"
 
 #include "Sjoko/ImGui/ImGuiLayer.h"
 
