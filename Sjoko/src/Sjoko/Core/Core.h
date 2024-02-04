@@ -2,19 +2,50 @@
 
 #include <memory>
 
-#ifdef SJ_PLATFORM_WINDOWS
-#if SJ_DYNAMIC_LINK
-  #ifdef SJ_BUILD_DLL
-    #define SJOKO_API __declspec(dllexport)
+#ifdef _WIN32
+  #ifdef _WIN64
+    #define SJ_PLATFORM_WINDOWS
   #else
-    #define SJOKO_API __declspec(dllimport)
+    #error "x86 Builds are not supported!"
+  #endif
+#elif defined(__APPLE__) || defined(__MACH__)
+  #include <TargetConditionals.h>
+  // Must check all platforms because TARGET_OS_MAC exists on all of them
+  #if TARGET_IPHONE_SIMULATOR == 1
+    #error "IOS simulator is not supported!"
+  #elif TARGET_OS_IPHONE == 1
+    #define SJ_PLATFORM_IOS
+    #error "IOS is not supported!"
+  #elif TARGET_OS_MAC == 1
+    #define SJ_PLATFORM_MACOS
+    #error "MacOS is not supported!"
+  #else
+    #error "Unknown Apple Platform!"
+  #endif
+// Android before linux, because andoird is based on linux kernel
+#elif defined(__ANDROID__)
+  #define SJ_PLATFORM_ANDROID
+  #error "Android is not supported!"
+#elif defined(__linux__)
+  #define SJ_PLATFORM_LINUX
+  #error "Linux is not supported!"
+#else
+  #error "Unknown platform!"
+#endif
+// DLL support
+#ifdef SJ_PLATFORM_WINDOWS
+  #if SJ_DYNAMIC_LINK
+    #ifdef SJ_BUILD_DLL
+      #define SJOKO_API __declspec(dllexport)
+    #else
+      #define SJOKO_API __declspec(dllimport)
+    #endif
+  #else
+    #define SJOKO_API
   #endif
 #else
-  #define SJOKO_API
-#endif
-#else
   #error Sjoko Engine only supports Windows!
-#endif
+#endif // End of DLL support
 
 #ifdef SJ_DEBUG
   #define SJ_ENABLE_ASSERTS

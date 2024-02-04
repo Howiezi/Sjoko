@@ -26,7 +26,3 @@
 
 #include "Sjoko/Renderer/OrthographicCamera.h"
 //-------------------------------
-
-// ---Entry Point----------------
-#include "Sjoko/Core/EntryPoint.h"
-//-------------------------------
