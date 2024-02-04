@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Sjoko/Input.h"
+#include "Sjoko/Core/Input.h"
 
 namespace Sjoko {
 

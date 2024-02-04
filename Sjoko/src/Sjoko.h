@@ -2,16 +2,16 @@
 
 // For use by Sjoko applications
 
-#include "Sjoko/Application.h"
-#include "Sjoko/Layer.h"
-#include "Sjoko/Log.h"
+#include "Sjoko/Core/Application.h"
+#include "Sjoko/Core/Layer.h"
+#include "Sjoko/Core/Log.h"
 
 #include "Sjoko/Core/Timestep.h"
 
-#include "Sjoko/Input.h"
-#include "Sjoko/KeyCodes.h"
-#include "Sjoko/MouseButtonCodes.h"
-#include "Sjoko/OrthographicCameraController.h"
+#include "Sjoko/Core/Input.h"
+#include "Sjoko/Core/KeyCodes.h"
+#include "Sjoko/Core/MouseButtonCodes.h"
+#include "Sjoko/Renderer/OrthographicCameraController.h"
 
 #include "Sjoko/ImGui/ImGuiLayer.h"
 
@@ -28,5 +28,5 @@
 //-------------------------------
 
 // ---Entry Point----------------
-#include "Sjoko/EntryPoint.h"
+#include "Sjoko/Core/EntryPoint.h"
 //-------------------------------

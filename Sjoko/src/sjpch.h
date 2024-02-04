@@ -14,7 +14,7 @@
 #include <unordered_map>
 #include <unordered_set>
 
-#include "Sjoko/Log.h"
+#include "Sjoko/Core/Log.h"
 
 #ifdef SJ_PLATFORM_WINDOWS
   #include <Windows.h>

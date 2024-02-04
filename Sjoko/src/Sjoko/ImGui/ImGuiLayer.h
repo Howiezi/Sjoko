@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Sjoko/Layer.h"
+#include "Sjoko/Core/Layer.h"
 
 #include "Sjoko/Events/ApplicationEvent.h"
 #include "Sjoko/Events/KeyEvent.h"

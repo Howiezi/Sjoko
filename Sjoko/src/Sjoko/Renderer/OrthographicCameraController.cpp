@@ -1,8 +1,8 @@
 #include "sjpch.h"
 #include "OrthographicCameraController.h"
 
-#include "Sjoko/Input.h"
-#include "Sjoko/KeyCodes.h"
+#include "Sjoko/Core/Input.h"
+#include "Sjoko/Core/KeyCodes.h"
 
 namespace Sjoko {
   OrthographicCameraController::OrthographicCameraController(float aspectRatio, bool rotation)

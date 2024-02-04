@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Renderer/OrthographicCamera.h"
+#include "OrthographicCamera.h"
 #include "Sjoko/Core/Timestep.h"
 
 #include "Sjoko/Events/ApplicationEvent.h"

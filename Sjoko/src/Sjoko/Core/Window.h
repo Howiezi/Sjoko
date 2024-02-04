@@ -2,7 +2,7 @@
 
 #include "sjpch.h"
 
-#include "Sjoko/Core.h"
+#include "Sjoko/Core/Core.h"
 #include "Sjoko/Events/Event.h"
 
 namespace Sjoko{

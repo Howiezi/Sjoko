@@ -2,7 +2,7 @@
 
 #include <string>
 
-#include "Sjoko/Core.h"
+#include "Sjoko/Core/Core.h"
 
 namespace Sjoko {
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Sjoko/Window.h"
+#include "Sjoko/Core/Window.h"
 #include "Sjoko/Renderer/GraphicsContext.h"
 
 #include <GLFW/glfw3.h>

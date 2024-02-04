@@ -1,7 +1,7 @@
 #include "sjpch.h"
 #include "WindowsInput.h"
 
-#include "Sjoko/Application.h"
+#include "Sjoko/Core/Application.h"
 #include <GLFW/glfw3.h>
 
 namespace Sjoko {

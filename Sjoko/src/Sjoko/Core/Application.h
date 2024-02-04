@@ -3,7 +3,7 @@
 #include "Core.h"
 
 #include "Window.h"
-#include "Sjoko/LayerStack.h"
+#include "Sjoko/Core/LayerStack.h"
 #include "Sjoko/Events/Event.h"
 #include "Sjoko/Events/ApplicationEvent.h"
 

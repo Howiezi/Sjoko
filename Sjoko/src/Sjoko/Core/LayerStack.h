@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Sjoko/Core.h"
+#include "Sjoko/Core/Core.h"
 #include "Layer.h"
 
 #include <vector>
