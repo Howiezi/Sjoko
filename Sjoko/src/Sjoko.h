@@ -17,6 +17,7 @@
 
 // ---Renderer------------------
 #include "Sjoko/Renderer/Renderer.h"
+#include "Sjoko/Renderer/Renderer2D.h"
 #include "Sjoko/Renderer/RenderCommand.h"
 
 #include "Sjoko/Renderer/Buffer.h"
