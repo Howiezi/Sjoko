@@ -41,9 +41,9 @@ void Sandbox2D::OnUpdate(Sjoko::Timestep ts)
     SJ_PROFILE_SCOPE("RendererDraw::OnUpdate");
     Sjoko::Renderer2D::BeginScene(m_CameraController.GetCamera());
 
-    Sjoko::Renderer2D::DrawQuad({ -1.0f, 0.0f }, { 0.8f, 0.8f }, { 0.8f, 0.2f, 0.3f, 1.0f });
+    Sjoko::Renderer2D::DrawRotatedQuad({ -1.0f, 0.0f }, { 0.8f, 0.8f }, glm::radians(-45.0f), { 0.8f, 0.2f, 0.3f, 1.0f });
     Sjoko::Renderer2D::DrawQuad({ 0.5f, -0.5f }, { 0.5f, 0.75f }, { 0.2f, 0.3f, 0.8f, 1.0f });
-    Sjoko::Renderer2D::DrawQuad({ 0.0f, 0.0f, -0.1f }, { 10.0f, 10.0f }, m_CheckerboardTexture);
+    Sjoko::Renderer2D::DrawRotatedQuad({ 0.0f, 0.0f, -0.1f }, { 10.0f, 10.0f }, glm::radians(10.0f), m_CheckerboardTexture, 1.0f, { 0.2f, 0.8f, 0.3f, 1.0f });
     Sjoko::Renderer2D::EndScene();
   }
 
