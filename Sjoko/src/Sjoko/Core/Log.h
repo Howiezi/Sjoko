@@ -26,6 +26,7 @@ namespace Sjoko {
 #define SJ_CORE_WARN(...) ::Sjoko::Log::GetCoreLogger()->warn(__VA_ARGS__)
 #define SJ_CORE_ERROR(...) ::Sjoko::Log::GetCoreLogger()->error(__VA_ARGS__)
 #define SJ_CORE_FATAL(...) ::Sjoko::Log::GetCoreLogger()->fatal(__VA_ARGS__)
+#define SJ_CORE_CRITICAL(...) ::Sjoko::Log::GetCoreLogger()->critical(__VA_ARGS__)
 
 // Client log macros
 #define SJ_TRACE(...) ::Sjoko::Log::GetClientLogger()->trace(__VA_ARGS__)
@@ -33,3 +34,4 @@ namespace Sjoko {
 #define SJ_WARN(...) ::Sjoko::Log::GetClientLogger()->warn(__VA_ARGS__)
 #define SJ_ERROR(...) ::Sjoko::Log::GetClientLogger()->error(__VA_ARGS__)
 #define SJ_FATAL(...) ::Sjoko::Log::GetClientLogger()->fatal(__VA_ARGS__)
+#define SJ_CRITICAL(...) ::Sjoko::Log::GetClientLogger()->critical(__VA_ARGS__)

@@ -1,15 +1,19 @@
 [submodule "Sjoko/vendor/spdlog"]
 	path = Sjoko/vendor/spdlog
 	url = https://github.com/gabime/spdlog
+        branch = v1.x
 [submodule "Sjoko/vendor/GLFW"]
 	path = Sjoko/vendor/GLFW
 	url = https://github.com/Howiezi/glfw
+        branch = master
 [submodule "imgui"]
 	path = imgui
 	url = https://github.com/TheCherno/imgui
 [submodule "Sjoko/vendor/imgui"]
 	path = Sjoko/vendor/imgui
 	url = https://github.com/TheCherno/imgui
+        branch = docking
 [submodule "Sjoko/vendor/glm"]
 	path = Sjoko/vendor/glm
 	url = https://github.com/g-truc/glm
+        branch = master
