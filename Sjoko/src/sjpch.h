@@ -16,6 +16,8 @@
 
 #include "Sjoko/Core/Log.h"
 
+#include "Sjoko/Debug/Instrumentator.h"
+
 #ifdef SJ_PLATFORM_WINDOWS
   #include <Windows.h>
 #endif

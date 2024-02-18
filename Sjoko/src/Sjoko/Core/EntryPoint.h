@@ -7,14 +7,19 @@ extern Sjoko::Application* Sjoko::CreateApplication();
 int main(int argc, char** argv)
 {
   Sjoko::Log::Init();
-  SJ_CORE_WARN("Initialized Log!");
-  int a = 5;
-  SJ_INFO("Hello! Var={0}", a);
 
-
+  SJ_PROFILE_BEGIN_SESSION("Startup", "SjokoProfile-Startup.json");
   auto app = Sjoko::CreateApplication();
+  SJ_PROFILE_END_SESSION();
+
+  SJ_PROFILE_BEGIN_SESSION("Runtime", "SjokoProfile-Runtime.json");
   app->Run();
+  SJ_PROFILE_END_SESSION();
+
+  SJ_PROFILE_BEGIN_SESSION("Shutdown", "SjokoProfile-Shutdown.json");
   delete app;
+  SJ_PROFILE_END_SESSION();
+
 }
 
 #endif //  SJ_PLATFORM_WINDOWS

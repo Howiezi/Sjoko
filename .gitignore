@@ -5,6 +5,7 @@ bin-int/
 
 # Sjoko files
 *.log
+*.json
 
 # Visual Studio files and folder
 .vs/
