@@ -15,6 +15,8 @@ namespace Sjoko {
 
   Application::Application()
   {
+    SJ_PROFILE_FUNCTION();
+
     SJ_CORE_ASSERT(!s_Instance, "Application already exists!")
     s_Instance = this;
 
@@ -29,23 +31,31 @@ namespace Sjoko {
 
   Application::~Application()
   {
+    SJ_PROFILE_FUNCTION();
 
+    Renderer::Shutdown();
   }
 
   void Application::PushLayer(Layer* layer) 
   {
+    SJ_PROFILE_FUNCTION();
+    
     m_LayerStack.PushLayer(layer);
     layer->OnAttach();
   }
 
   void Application::PushOverlay(Layer* layer)
   {
+    SJ_PROFILE_FUNCTION();
+    
     m_LayerStack.PushOverlay(layer);
     layer->OnAttach();
   }
 
   void Application::OnEvent(Event& e)
   {
+    SJ_PROFILE_FUNCTION();
+    
     EventDispatcher dispatcher(e);
     dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
     dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_FN(OnWindowResize));
@@ -64,26 +74,39 @@ namespace Sjoko {
 
   void Application::Run()
   {
+    SJ_PROFILE_FUNCTION();
+    
     while (m_Running)
     {
+      SJ_PROFILE_SCOPE("RunLoop");
+      
       float time = (float)glfwGetTime(); // Platform::GetTime
       Timestep timestep = time - m_LastFrameTime;
       m_LastFrameTime = time;
 
-      for (Layer* layer : m_LayerStack)
-      {
-        layer->OnUpdate(timestep);
-      }
-
       if (!m_Minimized)
       {
-        m_ImGuiLayer->Begin();
-        for (Layer* layer : m_LayerStack)
         {
-          layer->OnImGuiRender();
+          SJ_PROFILE_SCOPE("LayerStack OnUpdate");
+
+          for (Layer* layer : m_LayerStack)
+          {
+            layer->OnUpdate(timestep);
+          }
+        }
+
+        m_ImGuiLayer->Begin();
+        {
+          SJ_PROFILE_SCOPE("LayerStack OnImGuiRender");
+          
+          for (Layer* layer : m_LayerStack)
+          {
+            layer->OnImGuiRender();
+          }
         }
         m_ImGuiLayer->End();
       }
+
 
       m_Window->OnUpdate();
     }
@@ -97,6 +120,8 @@ namespace Sjoko {
 
   bool Application::OnWindowResize(WindowResizeEvent& e)
   {
+    SJ_PROFILE_FUNCTION();
+    
     if (e.GetWidth() == 0 || e.GetHeight() == 0)
     {
       m_Minimized = true;

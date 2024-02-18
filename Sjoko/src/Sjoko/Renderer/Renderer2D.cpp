@@ -20,6 +20,8 @@ namespace Sjoko {
 
   void Renderer2D::Init()
   {
+    SJ_PROFILE_FUNCTION();
+
     s_Data = new Renderer2DStorage();
 
     s_Data->QuadVertexArray = VertexArray::Create();
@@ -55,17 +57,22 @@ namespace Sjoko {
 
   void Renderer2D::Shutdown()
   {
+    SJ_PROFILE_FUNCTION();
+    
     delete s_Data;
   }
 
   void Renderer2D::BeginScene(const OrthographicCamera& camera)
   {
+    SJ_PROFILE_FUNCTION();
+    
     s_Data->TextureShader->Bind();
     s_Data->TextureShader->SetMat4("u_ViewProjection", camera.GetViewProjectionMatrix());
   }
 
   void Renderer2D::EndScene()
   {
+    SJ_PROFILE_FUNCTION();
 
   }
 
@@ -76,6 +83,8 @@ namespace Sjoko {
 
   void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const glm::vec4& color)
   {
+    SJ_PROFILE_FUNCTION();
+    
     s_Data->TextureShader->SetFloat4("u_Color", color);
     s_Data->WhiteTexture->Bind();
 
@@ -89,11 +98,12 @@ namespace Sjoko {
   void Renderer2D::DrawQuad(const glm::vec2& position, const glm::vec2& size, const Ref<Texture2D>& texture)
   {
     DrawQuad({ position.x, position.y, 0.0f }, size, texture);
-
   }
 
   void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const Ref<Texture2D>& texture)
   {
+    SJ_PROFILE_FUNCTION();
+    
     s_Data->TextureShader->SetFloat4("u_Color", glm::vec4(1.0f));
     texture->Bind();
 

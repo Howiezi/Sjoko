@@ -24,23 +24,37 @@ namespace Sjoko {
     return 0;
   }
 
-  OpenGLVertexArray::OpenGLVertexArray(){
+  OpenGLVertexArray::OpenGLVertexArray()
+  {
+    SJ_PROFILE_FUNCTION();
+
     glCreateVertexArrays(1, &m_RendererID);
   }
 
-  OpenGLVertexArray::~OpenGLVertexArray() {
+  OpenGLVertexArray::~OpenGLVertexArray() 
+  {
+    SJ_PROFILE_FUNCTION();
+
     glDeleteVertexArrays(1, &m_RendererID);
   }
 
-  void OpenGLVertexArray::Bind() const {
+  void OpenGLVertexArray::Bind() const 
+  {
+    SJ_PROFILE_FUNCTION();
+
     glBindVertexArray(m_RendererID);
   }
 
-  void OpenGLVertexArray::Unbind() const {
+  void OpenGLVertexArray::Unbind() const 
+  {
+    SJ_PROFILE_FUNCTION();
+
     glBindVertexArray(0);
   }
 
-  void OpenGLVertexArray::AddVertexBuffer(const Ref<VertexBuffer>& vertexBuffer) {
+  void OpenGLVertexArray::AddVertexBuffer(const Ref<VertexBuffer>& vertexBuffer) 
+  {
+    SJ_PROFILE_FUNCTION();
 
     SJ_CORE_ASSERT(vertexBuffer->GetLayout().GetElements().size(), "Vertex buffer has no layout!");
 
@@ -58,7 +72,10 @@ namespace Sjoko {
     m_VertexBuffers.push_back(vertexBuffer);
   }
 
-  void OpenGLVertexArray::SetIndexBuffer(const Ref<IndexBuffer>& indexBuffer) {
+  void OpenGLVertexArray::SetIndexBuffer(const Ref<IndexBuffer>& indexBuffer) 
+  {
+    SJ_PROFILE_FUNCTION();
+
     glBindVertexArray(m_RendererID);
     indexBuffer->Bind();
 

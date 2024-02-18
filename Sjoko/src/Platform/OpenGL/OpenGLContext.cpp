@@ -11,6 +11,8 @@ namespace Sjoko {
   }
 
   void OpenGLContext::Init() {
+    SJ_PROFILE_FUNCTION();
+
     glfwMakeContextCurrent(m_WindowHandle);
     int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
     SJ_CORE_ASSERT(status, "Failed to initialize Glad!");
@@ -31,6 +33,8 @@ namespace Sjoko {
   }
 
   void OpenGLContext::SwapBuffers() {
+    SJ_PROFILE_FUNCTION();
+
     glfwSwapBuffers(m_WindowHandle);
   }
 }

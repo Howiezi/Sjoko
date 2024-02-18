@@ -12,11 +12,14 @@ Sandbox2D::Sandbox2D()
 
 void Sandbox2D::OnAttach()
 {
+  SJ_PROFILE_FUNCTION();
+  
   m_CheckerboardTexture = Sjoko::Texture2D::Create("assets/textures/Checkerboard.png");
 }
 
 void Sandbox2D::OnDetach()
 {
+  SJ_PROFILE_FUNCTION();
 
 }
 
@@ -25,10 +28,7 @@ void Sandbox2D::OnUpdate(Sjoko::Timestep ts)
   SJ_PROFILE_FUNCTION();
 
   // Update
-  {
-    SJ_PROFILE_SCOPE("CameraController::OnUpdate");
-    m_CameraController.OnUpdate(ts);
-  }
+  m_CameraController.OnUpdate(ts);
 
   // Render
   {
