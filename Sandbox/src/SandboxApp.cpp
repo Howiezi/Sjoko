@@ -16,51 +16,51 @@ public:
   ExampleLayer()
     : Layer("Example"), m_CameraController(1280.0f/720.0f)
   {
-    m_VertexArray = Sjoko::VertexArray::Create();
+    //m_VertexArray = Sjoko::VertexArray::Create();
 
-    float vertices[3 * 7] = {
-      -0.5f, -0.5f, 0.0f, 0.8f, 0.2f, 0.8f, 1.0f,
-       0.5f, -0.5f, 0.0f, 0.2f, 0.3f, 0.8f, 1.0f,
-       0.0f,  0.5f, 0.0f, 0.8f, 0.8f, 0.2f, 1.0f
-    };
+    //float vertices[3 * 7] = {
+    //  -0.5f, -0.5f, 0.0f, 0.8f, 0.2f, 0.8f, 1.0f,
+    //   0.5f, -0.5f, 0.0f, 0.2f, 0.3f, 0.8f, 1.0f,
+    //   0.0f,  0.5f, 0.0f, 0.8f, 0.8f, 0.2f, 1.0f
+    //};
 
-    Sjoko::Ref<Sjoko::VertexBuffer> vertexBuffer;
-    vertexBuffer.reset(Sjoko::VertexBuffer::Create(vertices, sizeof(vertices)));
+    //Sjoko::Ref<Sjoko::VertexBuffer> vertexBuffer;
+    //vertexBuffer.reset(Sjoko::VertexBuffer::Create(vertices, sizeof(vertices)));
 
-    Sjoko::BufferLayout layout = {
-      { Sjoko::ShaderDataType::Float3, "a_Position" },
-      { Sjoko::ShaderDataType::Float4, "a_Color" }
-    };
+    //Sjoko::BufferLayout layout = {
+    //  { Sjoko::ShaderDataType::Float3, "a_Position" },
+    //  { Sjoko::ShaderDataType::Float4, "a_Color" }
+    //};
 
-    vertexBuffer->SetLayout(layout);
-    m_VertexArray->AddVertexBuffer(vertexBuffer);
+    //vertexBuffer->SetLayout(layout);
+    //m_VertexArray->AddVertexBuffer(vertexBuffer);
 
-    uint32_t indices[3] = { 0, 1, 2 };
-    Sjoko::Ref<Sjoko::IndexBuffer> indexBuffer;
-    indexBuffer.reset(Sjoko::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
-    m_VertexArray->SetIndexBuffer(indexBuffer);
+    //uint32_t indices[3] = { 0, 1, 2 };
+    //Sjoko::Ref<Sjoko::IndexBuffer> indexBuffer;
+    //indexBuffer.reset(Sjoko::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
+    //m_VertexArray->SetIndexBuffer(indexBuffer);
 
-    m_SquareVA = Sjoko::VertexArray::Create();
+    //m_SquareVA = Sjoko::VertexArray::Create();
 
-    float squareVertices[5 * 4] = {
-      -0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
-       0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
-       0.5f,  0.5f, 0.0f, 1.0f, 1.0f,
-      -0.5f,  0.5f, 0.0f, 0.0f, 1.0f
-    };
+    //float squareVertices[5 * 4] = {
+    //  -0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
+    //   0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+    //   0.5f,  0.5f, 0.0f, 1.0f, 1.0f,
+    //  -0.5f,  0.5f, 0.0f, 0.0f, 1.0f
+    //};
 
-    Sjoko::Ref<Sjoko::VertexBuffer> squareVB;
-    squareVB.reset(Sjoko::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
-    squareVB->SetLayout({
-      { Sjoko::ShaderDataType::Float3, "a_Position" },
-      { Sjoko::ShaderDataType::Float2, "a_TexCoord" },
-      });
-    m_SquareVA->AddVertexBuffer(squareVB);
+    //Sjoko::Ref<Sjoko::VertexBuffer> squareVB;
+    //squareVB.reset(Sjoko::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
+    //squareVB->SetLayout({
+    //  { Sjoko::ShaderDataType::Float3, "a_Position" },
+    //  { Sjoko::ShaderDataType::Float2, "a_TexCoord" },
+    //  });
+    //m_SquareVA->AddVertexBuffer(squareVB);
 
-    uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
-    Sjoko::Ref<Sjoko::IndexBuffer> squareIB;
-    squareIB.reset(Sjoko::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
-    m_SquareVA->SetIndexBuffer(squareIB);
+    //uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
+    //Sjoko::Ref<Sjoko::IndexBuffer> squareIB;
+    //squareIB.reset(Sjoko::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
+    //m_SquareVA->SetIndexBuffer(squareIB);
 
     std::string vertexSrc = R"(
       #version 330 core
