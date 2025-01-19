@@ -22,6 +22,11 @@ private:
   Sjoko::Ref<Sjoko::Shader> m_FlatColorShader;
 
   Sjoko::Ref<Sjoko::Texture2D> m_CheckerboardTexture;
+  Sjoko::Ref<Sjoko::Texture2D> m_SpriteSheet;
 
   glm::vec4 m_SquareColor = { 0.2f, 0.3f, 0.8f, 1.0f };
+
+  uint32_t m_MapWidth, m_MapHeight;
+
+  std::unordered_map<char, Sjoko::Ref<Sjoko::SubTexture2D>>s_TextureMap;
 };
