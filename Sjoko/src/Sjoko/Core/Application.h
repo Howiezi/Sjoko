@@ -16,7 +16,7 @@ namespace Sjoko {
   class Application
   {
   public:
-    Application();
+    Application(const std::string& name = "");
     virtual ~Application();
 
     void Run();
